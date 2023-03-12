@@ -8,6 +8,8 @@ TagManager:
   - Edge
   - SecondEdge
   - Terrain
+  - Enemy
+  - Spike
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI text;
-    public int score = 1;
+    public int score = 0;
     static public GameManager instance;
 
     private void Awake()
@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
 
     public void ScoreText()
     {
-        text.text = score.ToString();
         score++;
+        text.text = score.ToString();
+        
     }
 }
 

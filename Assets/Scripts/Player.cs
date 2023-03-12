@@ -5,20 +5,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rb;
-    [SerializeField] int jumpForce;
+    static public Player instance;
+    Rigidbody2D rigidBody;
+    [SerializeField] float jumpForce;
     [SerializeField] float speed;
-    AudioSource audio;
+    [SerializeField] Animator animator;
+    public GameObject child;
+    AudioSource play;
     private bool isJumping;
 
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        audio = GetComponent<AudioSource>();
-      
+        rigidBody = GetComponent<Rigidbody2D>();
+        play = GetComponent<AudioSource>();
+        
+       
+       
+
     }
 
-    
+
     void Update()
     {
 
@@ -33,29 +44,41 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rb.velocity = Vector2.up * jumpForce;
-            audio.Play();
+            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            play.Play();
+            animator.SetInteger("Run", 1);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
 
             transform.localScale = new Vector3(-1, 1, 1);
-        }
+            
 
+        }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
 
             transform.localScale = new Vector3(1, 1, 1);
+            
         }
+        
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Terrain"))
         {
             isJumping = false;
+            animator.SetInteger("Run", -1);
+        }
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            print("Dead by Spike");
+            child.transform.GetChild(0).gameObject.SetActive(true);
+            
         }
     }
 
@@ -66,6 +89,5 @@ public class Player : MonoBehaviour
             isJumping = true;
         }
     }
-
 
 }
