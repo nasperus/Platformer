@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    AudioSource play;
+    AudioSource coin;
    
     private void Start()
     {
-        play = GetComponent<AudioSource>();
+        coin = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            play.Play();
-            print("text");
+            coin.Play();
             GameManager.instance.ScoreText();
             Destroy(gameObject);
 

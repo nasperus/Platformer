@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private bool isMoving = true;
     [SerializeField] int enemyMove;
-    Rigidbody2D rigidBody;
+     Rigidbody2D rigidBody;
 
 
     private void Start()
@@ -31,17 +31,15 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
             rigidBody.velocity = Vector3.left * enemyMove; 
         }
-         if (collision.gameObject.CompareTag("SecondEdge"))
+
+        else if (collision.gameObject.CompareTag("SecondEdge"))
         {
             
             transform.localScale = new Vector3(1, 1, 1);
             rigidBody.velocity = Vector3.right * enemyMove;
         }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-           Player.instance.child.transform.GetChild(0).gameObject.SetActive(true);
 
-        }
+       
     }
     
 }

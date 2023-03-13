@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,7 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float speed;
     [SerializeField] Animator animator;
-    public GameObject child;
     AudioSource play;
     private bool isJumping;
 
@@ -19,6 +17,8 @@ public class Player : MonoBehaviour
     {
         instance = this;
     }
+
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -51,14 +51,12 @@ public class Player : MonoBehaviour
 
             transform.localScale = new Vector3(-1, 1, 1);
             
-
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
 
             transform.localScale = new Vector3(1, 1, 1);
-            
         }
         
     }
@@ -74,7 +72,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike"))
         {
             print("Dead by Spike");
-            child.transform.GetChild(0).gameObject.SetActive(true);
+           
 
         }
 
