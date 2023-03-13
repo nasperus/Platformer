@@ -24,9 +24,6 @@ public class Player : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         play = GetComponent<AudioSource>();
         
-       
-       
-
     }
 
 
@@ -78,7 +75,12 @@ public class Player : MonoBehaviour
         {
             print("Dead by Spike");
             child.transform.GetChild(0).gameObject.SetActive(true);
-            
+
+        }
+
+        if (collision.gameObject.CompareTag("BottomBorder"))
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -16,6 +16,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             play.Play();
+            print("text");
             GameManager.instance.ScoreText();
             Destroy(gameObject);
 
