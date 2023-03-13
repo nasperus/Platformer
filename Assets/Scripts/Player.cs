@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     [SerializeField] float jumpForce;
     [SerializeField] float speed;
-    [SerializeField] Animator animator;
+    public Animator animator;
     AudioSource play;
     private bool isJumping;
 
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         play = GetComponent<AudioSource>();
-        
+
     }
 
 
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     {
 
         PlayerMovement();
-        
+
     }
 
     private void PlayerMovement()
@@ -44,13 +44,14 @@ public class Player : MonoBehaviour
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             play.Play();
             animator.SetInteger("Run", 1);
+
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
 
             transform.localScale = new Vector3(-1, 1, 1);
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -58,9 +59,8 @@ public class Player : MonoBehaviour
 
             transform.localScale = new Vector3(1, 1, 1);
         }
-        
-    }
 
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -69,10 +69,12 @@ public class Player : MonoBehaviour
             isJumping = false;
             animator.SetInteger("Run", -1);
         }
+
+
         if (collision.gameObject.CompareTag("Spike"))
         {
-            print("Dead by Spike");
-           
+            animator.SetBool("Death", true);
+            Enemy.instance.GameOver = true;
 
         }
 

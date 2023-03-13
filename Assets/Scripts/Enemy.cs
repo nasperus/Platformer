@@ -4,42 +4,54 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private bool isMoving = true;
+    static public Enemy instance;
     [SerializeField] int enemyMove;
-     Rigidbody2D rigidBody;
+    Rigidbody2D rigidBody;
+    public AudioSource audioSource;
+    public bool GameOver { get; set; }
+    private void Awake()
+    {
+        instance = this;
 
+    }
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.velocity = Vector3.left * enemyMove;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isMoving)
-        {
-            transform.Translate(enemyMove * Time.deltaTime, 0, 0);
-        }
-    }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {   
 
         if (collision.gameObject.CompareTag("Edge"))
         {
-            isMoving = false;
+
             transform.localScale = new Vector3(-1, 1, 1);
-            rigidBody.velocity = Vector3.left * enemyMove; 
+            rigidBody.velocity = Vector3.left * enemyMove;
+
         }
 
-        else if (collision.gameObject.CompareTag("SecondEdge"))
+
+        if (collision.gameObject.CompareTag("SecondEdge"))
         {
-            
+
             transform.localScale = new Vector3(1, 1, 1);
             rigidBody.velocity = Vector3.right * enemyMove;
+
+
         }
 
-       
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            Player.instance.animator.SetBool("Death", true);
+            audioSource.Play();
+        }
+
     }
-    
+
 }
