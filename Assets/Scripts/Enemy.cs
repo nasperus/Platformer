@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             rigidBody.velocity = Vector3.right * enemyMove;
 
-
         }
 
 
@@ -50,6 +49,7 @@ public class Enemy : MonoBehaviour
 
             Player.instance.animator.SetBool("Death", true);
             audioSource.Play();
+            print("Dead by Ghost");
         }
 
     }

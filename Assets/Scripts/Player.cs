@@ -47,14 +47,14 @@ public class Player : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
 
             transform.localScale = new Vector3(-1, 1, 1);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
 
             transform.localScale = new Vector3(1, 1, 1);
@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Death", true);
             Enemy.instance.GameOver = true;
+            print("Dead by Spike");
 
         }
 
