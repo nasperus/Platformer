@@ -10,8 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     public Animator animator;
     AudioSource play;
-    private bool isJumping;
-
+    private bool jumping, isJumping;
+    [SerializeField] float jumpTime;
+    private float jumpTimeCounter;
 
     private void Awake()
     {
@@ -39,13 +40,30 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         transform.position += horizontal * speed * Time.deltaTime * Vector3.right;
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (Input.GetButtonDown(("Jump")) && !isJumping)
         {
-            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpTimeCounter = jumpTime;
+            jumping = true;
+            rigidBody.velocity = Vector2.up * jumpForce;
             play.Play();
             animator.SetInteger("Run", 1);
 
         }
+        if (Input.GetButton("Jump") && jumping == true)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rigidBody.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+
+            else
+            {
+                jumping = false;
+            }
+
+        }
+
 
         if (Input.GetKey(KeyCode.D))
         {
