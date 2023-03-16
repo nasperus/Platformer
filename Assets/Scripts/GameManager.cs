@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI text;
     private int Score { get; set; }
     static public GameManager instance;
     public AudioSource audioSource;

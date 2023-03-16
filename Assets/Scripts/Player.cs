@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
     static public Player instance;
     Rigidbody2D rigidBody;
-    [SerializeField] float jumpForce;
-    [SerializeField] float speed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float speed;
     public Animator animator;
     AudioSource play;
-    private bool jumping, isJumping;
-    [SerializeField] float jumpTime;
+    private bool isJumping, jumping;
+    [SerializeField] private float jumpTime;
     private float jumpTimeCounter;
+
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         play = GetComponent<AudioSource>();
+
 
     }
 
@@ -57,13 +60,12 @@ public class Player : MonoBehaviour
                 jumpTimeCounter -= Time.deltaTime;
             }
 
-            else
-            {
-                jumping = false;
-            }
-
         }
 
+        if (Input.GetButtonUp("Jump"))
+        {
+            jumping = false;
+        }
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -76,6 +78,12 @@ public class Player : MonoBehaviour
         {
 
             transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+
+            Application.Quit();
+
         }
 
     }
@@ -91,7 +99,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Spike"))
         {
-            animator.SetBool("Death", true);
+            //animator.SetBool("Death", true);
             Enemy.instance.GameOver = true;
             print("Dead by Spike");
 
