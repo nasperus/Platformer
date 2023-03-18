@@ -7,12 +7,12 @@ public class Player : MonoBehaviour
 {
     static public Player instance;
     Rigidbody2D rigidBody;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float speed;
+    [SerializeField] float jumpForce;
+    [SerializeField] float speed;
     public Animator animator;
     AudioSource play;
     private bool isJumping, jumping;
-    [SerializeField] private float jumpTime;
+    [SerializeField] float jumpTime;
     private float jumpTimeCounter;
 
 
@@ -33,8 +33,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.GameOver)
+        {
+            PlayerMovement();
+        }
 
-        PlayerMovement();
+
 
     }
 
@@ -52,13 +56,12 @@ public class Player : MonoBehaviour
             animator.SetInteger("Run", 1);
 
         }
-        if (Input.GetButton("Jump") && jumping == true)
+        if (Input.GetButton("Jump") && jumping == true && jumpTimeCounter > 0)
         {
-            if (jumpTimeCounter > 0)
-            {
-                rigidBody.velocity = Vector2.up * jumpForce;
-                jumpTimeCounter -= Time.deltaTime;
-            }
+
+            rigidBody.velocity = Vector2.up * jumpForce;
+            jumpTimeCounter -= Time.deltaTime;
+
 
         }
 
@@ -99,7 +102,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Spike"))
         {
-            //animator.SetBool("Death", true);
+            animator.SetBool("Death", true);
+            GameManager.instance.LivePanel();
             Enemy.instance.GameOver = true;
             print("Dead by Spike");
 

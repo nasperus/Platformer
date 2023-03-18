@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bacgkround : MonoBehaviour
 {
-    [SerializeField] private float followSpeed;
-    [SerializeField] private float yOffset;
-    [SerializeField] private Transform target;
+    [SerializeField] float followSpeed;
+    [SerializeField] float yOffset;
+    [SerializeField] Transform target;
 
 
     void Update()

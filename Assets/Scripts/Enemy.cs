@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     static public Enemy instance;
-    [SerializeField] private int enemyMove;
+    [SerializeField] int enemyMove;
     Rigidbody2D rigidBody;
     public AudioSource audioSource;
     public bool GameOver { get; set; }
@@ -47,7 +47,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            //Player.instance.animator.SetBool("Death", true);
+            Player.instance.animator.SetBool("Death", true);
+            GameManager.instance.LivePanel();
             audioSource.Play();
             print("Dead by Ghost");
         }
