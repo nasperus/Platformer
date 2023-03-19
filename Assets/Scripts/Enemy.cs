@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            Player.instance.animator.SetBool("Death", true);
+            //Player.instance.animator.SetBool("Death", true);
             GameManager.instance.LivePanel();
             audioSource.Play();
             print("Dead by Ghost");

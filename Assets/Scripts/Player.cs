@@ -39,7 +39,6 @@ public class Player : MonoBehaviour
         }
 
 
-
     }
 
     private void PlayerMovement()
@@ -102,7 +101,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Spike"))
         {
-            animator.SetBool("Death", true);
+            //animator.SetBool("Death", true);
             GameManager.instance.LivePanel();
             Enemy.instance.GameOver = true;
             print("Dead by Spike");
