@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        DontDestroyOnLoad(lifePanel.transform.GetChild(0));
 
     }
 

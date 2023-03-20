@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1825264913}
   - component: {fileID: 7511202419574840871}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMove: 2
+  audioSource: {fileID: 0}
 --- !u!50 &1825264913
 Rigidbody2D:
   serializedVersion: 4
@@ -159,7 +160,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: add2d69d7e7814947a64361159868172, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

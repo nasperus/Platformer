@@ -27,18 +27,15 @@ public class Player : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         play = GetComponent<AudioSource>();
 
-
     }
-
 
     void Update()
     {
         if (!GameManager.instance.GameOver)
         {
             PlayerMovement();
+
         }
-
-
     }
 
     private void PlayerMovement()
@@ -55,7 +52,8 @@ public class Player : MonoBehaviour
             animator.SetInteger("Run", 1);
 
         }
-        if (Input.GetButton("Jump") && jumping == true && jumpTimeCounter > 0)
+
+        if (Input.GetButton("Jump") && jumping == true && jumpTimeCounter >= 0)
         {
 
             rigidBody.velocity = Vector2.up * jumpForce;

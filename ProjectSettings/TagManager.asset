@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Spike
   - BottomBorder
+  - Border
+  - SecondBorder
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     static public Enemy instance;
     [SerializeField] int enemyMove;
     Rigidbody2D rigidBody;
-    public AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     public bool GameOver { get; set; }
     private void Awake()
     {
