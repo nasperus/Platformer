@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     [SerializeField] float jumpForce;
     [SerializeField] float speed;
-    public Animator animator;
-    AudioSource play;
+    [SerializeField] Animator animator;
+    private AudioSource play;
     private bool isJumping, jumping;
     [SerializeField] float jumpTime;
     private float jumpTimeCounter;
@@ -19,15 +19,10 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-
-    void Start()
-    {
         rigidBody = GetComponent<Rigidbody2D>();
         play = GetComponent<AudioSource>();
-
     }
+
 
     void Update()
     {
@@ -79,12 +74,6 @@ public class Player : MonoBehaviour
 
             transform.localScale = new Vector3(1, 1, 1);
         }
-        if (Input.GetKey(KeyCode.Escape))
-        {
-
-            Application.Quit();
-
-        }
 
     }
 
@@ -101,6 +90,7 @@ public class Player : MonoBehaviour
         {
             //animator.SetBool("Death", true);
             GameManager.instance.LivePanel();
+            StartCoroutine(GameManager.instance.LoadThisScene());
             Enemy.instance.GameOver = true;
             print("Dead by Spike");
 

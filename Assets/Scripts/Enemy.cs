@@ -6,17 +6,12 @@ public class Enemy : MonoBehaviour
 {
     static public Enemy instance;
     [SerializeField] int enemyMove;
-    Rigidbody2D rigidBody;
+    private Rigidbody2D rigidBody;
     [SerializeField] AudioSource audioSource;
     public bool GameOver { get; set; }
     private void Awake()
     {
         instance = this;
-
-    }
-
-    private void Start()
-    {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = Vector3.left * enemyMove;
         audioSource = GetComponent<AudioSource>();
@@ -49,6 +44,8 @@ public class Enemy : MonoBehaviour
 
             //Player.instance.animator.SetBool("Death", true);
             GameManager.instance.LivePanel();
+            StartCoroutine(GameManager.instance.LoadThisScene());
+
             audioSource.Play();
             print("Dead by Ghost");
         }

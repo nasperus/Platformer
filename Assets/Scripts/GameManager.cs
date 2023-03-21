@@ -7,26 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    [SerializeField] TextMeshProUGUI text;
+    static public GameManager instance;
+    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject lifePanel;
     private int lives = 3;
     private int Score = 0;
-    static public GameManager instance;
     public AudioSource Audio { get; set; }
     public bool GameOver { get; set; }
+
+
+
     private void Awake()
     {
         instance = this;
-
-
-    }
-
-    private void Start()
-    {
         Audio = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            Application.Quit();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Scene1");
+
+        }
+    }
     public void LivePanel()
     {
         if (lives > 0)
@@ -42,8 +53,6 @@ public class GameManager : MonoBehaviour
 
         }
 
-        //StartCoroutine(LoadThisScene());
-
     }
     public void ScoreText()
     {
@@ -51,11 +60,11 @@ public class GameManager : MonoBehaviour
         if (!GameOver)
         {
             Score++;
-            text.text = Score.ToString();
+            scoreText.text = Score.ToString();
         }
 
     }
-    IEnumerator LoadThisScene()
+    public IEnumerator LoadThisScene()
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Scene1");

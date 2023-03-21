@@ -6,16 +6,13 @@ public class SecondEnemy : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] float enemyMovement;
-    private AudioSource audio;
+    private new AudioSource audio;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.up * enemyMovement;
         audio = GetComponent<AudioSource>();
     }
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
