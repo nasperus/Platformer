@@ -43,9 +43,8 @@ public class Enemy : MonoBehaviour
         {
 
             //Player.instance.animator.SetBool("Death", true);
-            GameManager.instance.LivePanel();
-            StartCoroutine(GameManager.instance.LoadThisScene());
-
+            //StartCoroutine(GameManager.instance.LoadThisScene());
+            SaveLife.instance.Life();
             audioSource.Play();
             print("Dead by Ghost");
         }

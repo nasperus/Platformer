@@ -89,8 +89,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike"))
         {
             //animator.SetBool("Death", true);
-            GameManager.instance.LivePanel();
-            StartCoroutine(GameManager.instance.LoadThisScene());
+            //StartCoroutine(GameManager.instance.LoadThisScene());
             Enemy.instance.GameOver = true;
             print("Dead by Spike");
 

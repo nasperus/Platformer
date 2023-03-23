@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     static public GameManager instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject lifePanel;
-    private int lives = 3;
     private int Score = 0;
     public AudioSource Audio { get; set; }
     public bool GameOver { get; set; }
@@ -21,6 +20,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Audio = GetComponent<AudioSource>();
+
+
     }
 
     private void Update()
@@ -38,22 +39,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    public void LivePanel()
-    {
-        if (lives > 0)
-        {
-            lives--;
-            lifePanel.transform.GetChild(lives).gameObject.SetActive(false);
 
-        }
-
-        if (lives == 0)
-        {
-            GameOver = true;
-
-        }
-
-    }
     public void ScoreText()
     {
 
