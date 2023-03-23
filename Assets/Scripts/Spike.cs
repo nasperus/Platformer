@@ -10,6 +10,7 @@ public class Spike : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GetComponent<AudioSource>().Play();
+            SaveLife.instance.Life();
         }
     }
 

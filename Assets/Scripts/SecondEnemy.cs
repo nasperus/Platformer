@@ -30,6 +30,7 @@ public class SecondEnemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            SaveLife.instance.Life();
             audio.Play();
         }
 

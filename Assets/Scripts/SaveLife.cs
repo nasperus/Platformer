@@ -7,7 +7,7 @@ public class SaveLife : MonoBehaviour
     public static SaveLife instance;
 
     [SerializeField] GameObject[] obj;
-    public static int score = 0;
+    public static int score = 3;
     public static bool check = true;
 
     private void Awake()
@@ -18,11 +18,15 @@ public class SaveLife : MonoBehaviour
     public void Life()
     {
 
-        while (score < obj.Length)
+        if (score <= obj.Length && score != 0)
         {
+            score--;
+            obj[score].SetActive(false);
+        }
 
-
-
+        if (score == 0)
+        {
+            GameManager.instance.GameOver = true;
         }
     }
 }
