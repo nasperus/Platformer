@@ -41,6 +41,6 @@ public class Enemy : MonoBehaviour
 
  private void TestingHub()
  {
-     
+     Debug.Log("asdasd");
  }
 }
