@@ -38,4 +38,9 @@ public class Enemy : MonoBehaviour
      spriteRenderer.flipX = !_toggleObjects;
     
  }
+
+ private void TestingHub()
+ {
+     
+ }
 }
