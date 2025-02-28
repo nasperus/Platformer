@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
@@ -40,12 +39,12 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
-       
         Instance = this;
         _originalMoveSpeed = moveSpeed;
         _originalGravity = rb.gravityScale;
         _animations = GetComponent<PlayerAnimations>();
     }
+    
     private void FixedUpdate()
     {
         PlayerMovement();
@@ -72,6 +71,7 @@ public class Player : MonoBehaviour
         else _canAttack = false;
 
     }
+    
     private void DashTimer()
     {
         if (!(_dashTimer > 0)) return;
@@ -79,11 +79,13 @@ public class Player : MonoBehaviour
         if (_dashTimer <= 0)
             IsDashing = false;
     }
+    
     private void DashCooldown()
     {
         if (_dashCooldownTimer > 0)
             _dashCooldownTimer -= Time.deltaTime;
     }
+    
     private void OnDash()
     { 
         if (_dashCooldownTimer > 0 || IsDashing || !IsMoving) return;
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
             _dashCooldownTimer = dashCooldown;
             IsDashing = true;
     }
+    
     private void PlayerMovement()
     {
         IsGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
@@ -103,6 +106,7 @@ public class Player : MonoBehaviour
         if (!IsMoving) return;
         transform.localScale = new Vector3(moveDirection.x,transform.localScale.y,transform.localScale.z);
     }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = IsGrounded ? Color.green : Color.red;
